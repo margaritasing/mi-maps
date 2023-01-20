@@ -10,7 +10,7 @@ const INITIAL_STATE: PlaceState = {
   userLocation: undefined
 }
 
-export const Placesprovider = () => {
+export const PlacesProvider = () => {
   return (
     <div>Placesprovider</div>
   )
