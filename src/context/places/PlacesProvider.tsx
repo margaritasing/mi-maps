@@ -1,5 +1,5 @@
 
-import { useReducer } from 'react'
+import { useEffect, useReducer } from 'react'
 import { PlacesContext } from './PlacesContext'
 import { placesReducer } from './PlacesReducer'
 
@@ -18,7 +18,12 @@ interface Props {
 }
 
 export const PlacesProvider = ({ children }: Props) => {
-  const [state, dispatch] = useReducer(placesReducer, INITIAL_STATE)
+  const [state, dispatch] = useReducer(placesReducer, INITIAL_STATE);
+
+  useEffect(() => {
+    
+  }, [])
+  
   return (
     <PlacesContext.Provider value={{
        ...state
