@@ -1,6 +1,8 @@
 
 import { useEffect, useReducer } from 'react'
+import { searchApi } from '../../apis'
 import { getUserGeolocation } from '../../helpers'
+import { Feature, PlacesResponse } from '../../interfaces/places'
 import { PlacesContext } from './PlacesContext'
 import { placesReducer } from './PlacesReducer'
 
@@ -25,10 +27,33 @@ export const PlacesProvider = ({ children }: Props) => {
      getUserGeolocation()
               .then( lnglat => dispatch({type:'setUserLocation', payload: lnglat  }) )
   }, [])
+
+  const searchPlacesByTerm = async( query: string ): Promise<Feature[]> => {
+    if ( query.length === 0 ) {
+        dispatch({ type: 'setPlaces', payload: [] });
+        return [];
+    }
+    if ( !state.userLocation ) throw new Error('No hay ubicación del usuario');
+
+    dispatch({ type: 'setLoadingPlaces' });
+
+    const resp = await searchApi.get<PlacesResponse>(`/${ query }.json`, {
+        params: {
+            proximity: state.userLocation.join(',')
+        }
+    });
+
+    dispatch({ type: 'setPlaces', payload: resp.data.features });
+    return resp.data.features;
+}
+
   
   return (
     <PlacesContext.Provider value={{
-       ...state
+       ...state,
+
+      // Methods
+      searchPlacesByTerm
     }}>
         { children }
     </PlacesContext.Provider>
