@@ -8,12 +8,16 @@ import { placesReducer } from './PlacesReducer'
 
 export interface PlaceState {
   isLoading:boolean,
-  userLocation?: [number, number]
+  userLocation?: [number, number],
+  isLoadingPlaces: boolean,
+  places: Feature[],
 }
 
 const INITIAL_STATE: PlaceState = {
   isLoading: true,
-  userLocation: undefined
+  userLocation: undefined,
+  isLoadingPlaces: false,
+  places:[]
 }
 
 interface Props {
@@ -29,22 +33,22 @@ export const PlacesProvider = ({ children }: Props) => {
   }, [])
 
   const searchPlacesByTerm = async( query: string ): Promise<Feature[]> => {
-    if ( query.length === 0 ) {
-        dispatch({ type: 'setPlaces', payload: [] });
-        return [];
-    }
-    if ( !state.userLocation ) throw new Error('No hay ubicación del usuario');
+      if ( query.length === 0 ) {
+          dispatch({ type: 'setPlaces', payload: [] });
+          return [];
+      }
+      if ( !state.userLocation ) throw new Error('No hay ubicación del usuario');
 
-    dispatch({ type: 'setLoadingPlaces' });
+      dispatch({ type: 'setLoadingPlaces' });
 
-    const resp = await searchApi.get<PlacesResponse>(`/${ query }.json`, {
-        params: {
-            proximity: state.userLocation.join(',')
-        }
-    });
+      const resp = await searchApi.get<PlacesResponse>(`/${ query }.json`, {
+          params: {
+              proximity: state.userLocation.join(',')
+          }
+      });
 
-    dispatch({ type: 'setPlaces', payload: resp.data.features });
-    return resp.data.features;
+      dispatch({ type: 'setPlaces', payload: resp.data.features });
+      return resp.data.features;
 }
 
   
