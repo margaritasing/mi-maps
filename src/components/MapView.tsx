@@ -2,6 +2,8 @@ import { useContext } from "react"
 import { PlacesContext } from "../context"
 import { Loading } from "./Loading"
 
+import '../index.css';
+
 
 export const MapView = () => {
     const { isLoading, userLocation } = useContext( PlacesContext  )
