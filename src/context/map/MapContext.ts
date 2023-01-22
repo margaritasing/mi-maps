@@ -1,5 +1,9 @@
+import { createContext } from "react";
+import { Map } from 'mapbox-gl'
 
-
-export const MapContext = () => {
-  
+interface MapContextProps {
+    isMapReady: boolean;
+    map?: Map
 }
+
+export const MapContext = createContext ({}  as MapContextProps) 
