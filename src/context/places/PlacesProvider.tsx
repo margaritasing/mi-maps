@@ -1,5 +1,6 @@
 
 import { useEffect, useReducer } from 'react'
+import { getUserGeolocation } from '../../helpers'
 import { PlacesContext } from './PlacesContext'
 import { placesReducer } from './PlacesReducer'
 
@@ -21,7 +22,8 @@ export const PlacesProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(placesReducer, INITIAL_STATE);
 
   useEffect(() => {
-    
+     getUserGeolocation()
+              .then( lnglat => dispatch({type:'setUserLocation', payload: lnglat  }) )
   }, [])
   
   return (
