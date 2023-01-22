@@ -5,6 +5,8 @@ interface MapContextProps {
     isMapReady: boolean;
     map?: Map,
 
+   
+
     //Metodos
     setMap:(map: Map) => void
 }
