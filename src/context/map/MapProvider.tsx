@@ -48,7 +48,7 @@ export const MapProvider = ({ children }: Props) => {
 
         dispatch({ type: 'setMarkers', payload: newMarkers });
         
-    }, [ places ])
+    }, [ places ]) //esta es para mostrar los marcadores en los sitios buscados
 
 
     const setMap = ( map: Map ) => {
