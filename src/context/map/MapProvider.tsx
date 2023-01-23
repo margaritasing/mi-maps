@@ -5,13 +5,15 @@ import { mapReducer } from './mapReducer';
 
 
 export interface MapState {
-    isMapReady:boolean;
-    map?: Map
+    isMapReady: boolean;
+    map?: Map;
+    markers: Marker[];
 }
 
 const INITIAL_STATE: MapState = {
-    isMapReady:false,
-    map: undefined
+    isMapReady: false,
+    map: undefined,
+    markers: [],
 }
 
 interface Props {
@@ -40,13 +42,20 @@ export const MapProvider = ({ children }: Props) => {
         dispatch({ type: 'setMap', payload: map })
 
     }
+
+    
+
+
+
+
+
   return (
     <MapContext.Provider value={{
         ...state,
 
        // Methods
-        setMap
-       // getRouteBetweenPoints
+        setMap,
+        getRouteBetweenPoints
     }}>
         { children }
     </MapContext.Provider>
