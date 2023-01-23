@@ -29,11 +29,11 @@ export const SearchResults = () => {
 
 
     if( isLoadingPlaces ) {
-        return < LoadingPlaces />;
+        return <LoadingPlaces />;
     }
 
     if( places.length === 0 ) {
-        return <> </>;
+        return <></>;
     }
 
     return (
@@ -68,4 +68,3 @@ export const SearchResults = () => {
         </ul>
     )
 }
-

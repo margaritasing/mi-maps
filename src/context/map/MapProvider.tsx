@@ -53,7 +53,7 @@ export const MapProvider = ({ children }: Props) => {
                 .setLngLat([ lng, lat ])
                 .addTo( state.map! );
             
-            newMarkers.push( newMarker ); // muestra los diferentes marcadores 
+            newMarkers.push( newMarker );
         }
 
         // Todo: limpiar polyline
@@ -79,7 +79,7 @@ export const MapProvider = ({ children }: Props) => {
         .addTo( map );
 
 
-        dispatch({ type: 'setMap', payload: map }) //muestra mi ubicacion
+        dispatch({ type: 'setMap', payload: map })
 
     }
 
@@ -167,3 +167,5 @@ export const MapProvider = ({ children }: Props) => {
         </MapContext.Provider>
     )
 }
+
+

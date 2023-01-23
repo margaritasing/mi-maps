@@ -1,2 +1,6 @@
-export{ getUserGeolocation } from "./getUserLocation";
+
+
+export { getUserLocation } from './getUserLocation';
+
+
 

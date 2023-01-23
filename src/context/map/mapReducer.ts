@@ -1,5 +1,5 @@
-
 /* eslint import/no-webpack-loader-syntax: off */
+
 import { MapState } from './MapProvider';
 
 //@ts-ignore
@@ -25,7 +25,7 @@ export const mapReducer = ( state: MapState, action: MapAction ):MapState => {
                 ...state,
                 markers: action.payload
             }
- 
+
         default:
             return state;
     }
