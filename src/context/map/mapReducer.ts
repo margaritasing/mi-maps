@@ -20,12 +20,12 @@ export const mapReducer = ( state: MapState, action: MapAction ):MapState => {
                 map: action.payload
             }    
         
-       /*  case 'setMarkers':
+        case 'setMarkers':
             return {
                 ...state,
                 markers: action.payload
             }
- */
+ 
         default:
             return state;
     }
